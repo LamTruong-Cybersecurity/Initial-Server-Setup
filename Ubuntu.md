@@ -26,27 +26,6 @@ Bây giờ mình đã có một tài khoản người dùng mới với các đ�
         usermod -aG sudo admin
 **->** Giờ đây, khi đã đăng nhập với tư cách người dùng **admin**, bạn có thể nhập **sudo** trước các lệnh để chạy chúng với các đặc quyền của **người dùng siêu cấp**.
 
-**Bước 4 - Thiết lập tường lửa cơ bản**
-
-Máy chủ Ubuntu 20.04 có thể sử dụng tường lửa **UFW** để đảm bảo chỉ cho phép các kết nối đến một số dịch vụ nhất định. Mình có thể thiết lập tường lửa cơ bản bằng ứng dụng này.
-
-Chúng ta cần đảm bảo rằng tường lửa cho phép các kết nối **SSH** để chúng ta có thể đăng nhập lại vào lần sau. Mình cho phép các kết nối này bằng lệnh sau:
-
-        ufw allow OpenSSH
-Sau đó, chúng ta kích hoạt tường lửa bằng cách gõ:
-
-        ufw enable
-Nhập "y" và nhấn "ENTER" để tiếp tục. Bạn có thể thấy rằng các kết nối **SSH** vẫn được phép bằng cách nhập lệnh sau để kiểm tra trạng thái của tường lửa:
-
-        ufw status
-Kết quả hiển thị:
-        
-        Status: active
-
-        To                         Action      From
-        --                         ------      ----
-        OpenSSH                    ALLOW       Anywhere
-        OpenSSH (v6)               ALLOW       Anywhere (v6)
 **=> Như vậy chúng ta đã hoàn thành các thiết lập ban đầu của máy chủ.**
 
 **Bây giờ, các bạn cần thoát khỏi tài khoản root, đăng xuất khỏi hệ thống. Sau đó đăng nhập vào tài khoản siêu cấp admin**
