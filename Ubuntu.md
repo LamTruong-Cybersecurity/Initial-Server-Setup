@@ -21,10 +21,10 @@ Nhập một mật khẩu mạnh và điền vào bất kỳ trường thông ti
 
 Bây giờ mình đã có một tài khoản người dùng mới với các đặc quyền tài khoản thông thường. Tuy nhiên, nhiều lúc mình có thể cần thực hiện các công việc nâng cao của quản trị. Để thiết lập siêu người dùng hoặc đặc quyền root cho tài khoản bình thường, điều này sẽ cho phép người dùng bình thường chạy các lệnh có đặc quyền quản trị bằng cách đặt từ trước lệnh **sudo**.
 
-Để thêm các đặc quyền này cho người dùng mới, mình sẽ thêm người dùng đó vào nhóm **sudo**. Theo mặc định, trên Ubuntu 20.04, người dùng là thành viên của nhóm **sudo** được phép sử dụng lệnh **sudo**.
+Để thêm các đặc quyền này cho người dùng mới, mình sẽ thêm người dùng đó vào nhóm **sudo**. Theo mặc định, trên **Ubuntu** 20.04, người dùng là thành viên của nhóm **sudo** được phép sử dụng lệnh **sudo**.
 
         usermod -aG sudo admin
-**->** Giờ đây, khi đã đăng nhập với tư cách người dùng **admin**, bạn có thể nhập **sudo** trước các lệnh để chạy chúng với các đặc quyền của người dùng siêu cấp.
+**->** Giờ đây, khi đã đăng nhập với tư cách người dùng **admin**, bạn có thể nhập **sudo** trước các lệnh để chạy chúng với các đặc quyền của **người dùng siêu cấp**.
 
 **Bước 4 - Thiết lập tường lửa cơ bản**
 
