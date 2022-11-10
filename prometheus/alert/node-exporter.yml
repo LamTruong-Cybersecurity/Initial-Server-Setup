@@ -1,0 +1,29 @@
+groups:
+  - name: HardwareRules
+    rules:
+      - alert: "RAM > 90%"
+        expr: round((100 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100)), 0.01) > 90
+        for: 3m
+        labels:
+          severity: critical
+          notify: email
+        annotations:
+          description: "VALUE = {{ $value }}\n server: {{ $labels.server }}\n ip: {{ $labels.ip }}"
+
+      - alert: "DiskSpace > 90%"
+        expr: round((100 - (node_filesystem_avail_bytes{server!~".*App.*"} * 100) / node_filesystem_size_bytes{server!~".*App.*"}), 0.01) > 90 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
+        for: 3m
+        labels:
+          severity: critical
+          notify: email
+        annotations:
+          description: "Host out of disk space\n server: {{ $labels.server }}\n ip: {{ $labels.ip }}, VALUE = {{ $value }}, mountpoint: {{ $labels.mountpoint }}."
+
+      - alert: "CpuLoad > 90%"
+        expr: round((100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100)), 0.01) > 90
+        for: 3m
+        labels:
+          severity: critical
+          notify: email
+        annotations:
+          description: "CPU load is > 90%\n server: {{ $labels.server }}\n ip: {{ $labels.ip }}\n VALUE = {{ $value }}"

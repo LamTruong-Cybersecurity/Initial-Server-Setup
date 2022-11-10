@@ -1,0 +1,35 @@
+global:
+  scrape_interval: 1m
+  evaluation_interval: 1m
+  external_labels:
+    monitor: "monitor-vnpt"
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - "alertmanager:9093"
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+rule_files:
+  - "/alertmanager/*.yml"
+scrape_configs:
+  - job_name: "prometheus"
+    scrape_interval: 30s
+    honor_labels: true
+
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "node_exporter"
+    scrape_interval: 30s
+    honor_labels: true
+
+    static_configs:
+      - targets: ["192.168.5.13:9100"]
+        labels:
+          server: "Exporter1"
+          ip: "192.168.5.13"
+      - targets: ["192.168.5.219:9100"]
+        labels:
+          server: "Exporter2"
+          ip: "192.168.5.219"
